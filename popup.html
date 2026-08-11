@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Steal a Chicken</title>
+<link rel="stylesheet" href="css/popup.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== LOBBY ===== -->
+  <section id="lobby-screen" class="screen">
+    <header class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" width="34" height="34" aria-hidden="true">
+        <circle cx="32" cy="32" r="30" fill="#ffd65c" stroke="#7a4e14" stroke-width="2.5"/>
+        <ellipse cx="27" cy="38" rx="18" ry="14" fill="#fff" stroke="#3c3c3c" stroke-width="1.6"/>
+        <circle cx="44" cy="24" r="9" fill="#fff" stroke="#3c3c3c" stroke-width="1.6"/>
+        <polygon points="38,20 32,15 34,22 30,25 36,25" fill="#d22828"/>
+        <polygon points="51,23 58,26 51,29" fill="#f09614"/>
+        <circle cx="46.5" cy="22" r="1.4" fill="#222"/>
+      </svg>
+      <h1>Steal a Chicken</h1>
+    </header>
+
+    <p class="tagline">Hatch eggs. Grow a flock. Raid the coop next door.<br/>Eggs can't be stolen — only chickens that have hatched.</p>
+
+    <div class="field">
+      <label for="name-input">Farmer name</label>
+      <input id="name-input" maxlength="14" placeholder="Farmer" autocomplete="off" />
+    </div>
+
+    <div class="colors" id="color-picker" role="radiogroup" aria-label="Farmer color"></div>
+
+    <div class="lobby-actions">
+      <button id="host-btn" class="btn btn-primary">Host a room</button>
+
+      <div class="or-row"><span>or</span></div>
+
+      <div class="join-row">
+        <input id="join-code-input" maxlength="5" placeholder="ROOM CODE" autocomplete="off" />
+        <button id="join-btn" class="btn btn-secondary">Join</button>
+      </div>
+    </div>
+
+    <p id="lobby-status" class="status" aria-live="polite"></p>
+  </section>
+
+  <!-- ===== GAME ===== -->
+  <section id="game-screen" class="screen hidden">
+    <div id="hud">
+      <div class="hud-left">
+        <div class="room-chip">
+          <span class="room-label">ROOM</span>
+          <span id="room-code-display">-----</span>
+        </div>
+        <div class="stat">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="#f4c430" stroke="#8a5d00" stroke-width="1.5"/><text x="12" y="16" text-anchor="middle" font-size="11" fill="#7a4e00" font-family="inherit">c</text></svg>
+          <span id="coin-count">0</span>
+        </div>
+        <div class="stat">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><ellipse cx="12" cy="14" rx="8" ry="6" fill="#fff" stroke="#3c3c3c" stroke-width="1.4"/><circle cx="17" cy="9" r="3.4" fill="#fff" stroke="#3c3c3c" stroke-width="1.4"/></svg>
+          <span id="chicken-count">0</span>
+        </div>
+      </div>
+      <div class="hud-right">
+        <button id="players-toggle" class="icon-btn" title="Players" aria-label="Players">
+          <svg viewBox="0 0 24 24" width="17" height="17"><circle cx="8" cy="9" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="17" cy="9" r="3.2" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M2 20c0-4 3-6.5 6-6.5s6 2.5 6 6.5" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 20c0-4 3-6.5 6-6.5s6 2.5 6 6.5" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+        </button>
+        <button id="leave-btn" class="icon-btn" title="Leave room" aria-label="Leave room">
+          <svg viewBox="0 0 24 24" width="17" height="17"><path d="M9 4H5a1 1 0 00-1 1v14a1 1 0 001 1h4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M13 8l5 4-5 4" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12h9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <div id="world-wrap" tabindex="0">
+      <svg id="world" viewBox="0 0 640 420" preserveAspectRatio="xMidYMid meet"></svg>
+      <div id="toast-layer"></div>
+      <div id="players-panel" class="hidden"></div>
+      <div id="hint-bar">WASD / arrows to move &middot; E to steal a hatched chicken</div>
+    </div>
+  </section>
+
+</div>
+
+<script src="js/peerjs.min.js"></script>
+<script src="js/state.js"></script>
+<script src="js/render.js"></script>
+<script src="js/net.js"></script>
+<script src="js/game.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
